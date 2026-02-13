@@ -119,7 +119,7 @@ const recentPosts = blogSidebar.routes.slice(0, 4).map((entry) => ({
   url: entry.path,
 }));
 
-export function HomeContent() {
+export default function HomeContent() {
   return (
     <>
       <div className="ps-0">

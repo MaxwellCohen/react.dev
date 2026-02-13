@@ -24,10 +24,10 @@ import {TocContext} from '../MDX/TocContext';
 import {Languages, LanguagesContext} from '../MDX/LanguagesContext';
 import type {TocItem} from 'components/MDX/TocContext';
 import type {RouteItem} from 'components/Layout/getRouteMeta';
-import {HomeContent} from './HomeContent';
 import {TopNav} from './TopNav';
 import cn from 'classnames';
 import Head from 'next/head';
+const HomeContent = React.lazy(() => import('./HomeContent'));
 
 import(/* webpackPrefetch: true */ '../MDX/CodeBlock/CodeBlock');
 
@@ -67,7 +67,11 @@ export function Page({
 
   let content;
   if (isHomePage) {
-    content = <HomeContent />;
+    content = (
+      <Suspense>
+        <HomeContent />
+      </Suspense>
+    );
   } else {
     content = (
       <div className="ps-0">
